@@ -48,11 +48,13 @@ function App() {
                             title="Frontend Work"
                             imgSrc="img/demos/4.png"
                             link="dark/home.html"
+                            adjustImageSize={false}
                         />
                         <ProjectCard
                             title="Backend Work"
                             imgSrc="img/demos/3.png"
                             link="dark/coming-soon.html"
+                            adjustImageSize={true}
                         />
                     </div>
                 </div>
