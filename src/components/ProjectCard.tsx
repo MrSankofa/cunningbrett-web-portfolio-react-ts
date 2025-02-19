@@ -7,13 +7,25 @@ interface ProjectCardProps {
     adjustImageSize: boolean
 }
 
-const ProjectCard = ({ link, imgSrc, title, adjustImageSize }: ProjectCardProps) => {
+import { motion } from "framer-motion";
+
+const ProjectCard = ({ title, imgSrc, link, adjustImageSize }: ProjectCardProps) => {
     return (
-        <div className="card-item bg-dark border border-[#ffffff1a] rounded-30 py-[100px] px-[15px] md:px-[40px] lg:px-[50px] relative mt-[40px]">
+        <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="card-item px-[25px] bg-dark border border-[#ffffff1a] rounded-30 py-[100px] px-[15px] md:px-[40px] lg:px-[50px] relative mt-[40px]"
+        >
             <div className="relative p-[40px] z-3 mt-[40px]">
                 <div className="border border-[#aaa] rounded-t-md rounded-b-none overflow-hidden">
-                    <a href={link} target="_blank" rel="noopener noreferrer" className="z-3">
-                        <img src={imgSrc} alt={title} className={`max-w-[83%] ${adjustImageSize ? "w-[71%]" : "w-[83%]"} `} />
+                    <a href={link} target="_blank" rel="noopener noreferrer">
+                        <img
+                            src={imgSrc}
+                            alt={title}
+                            className={`mx-auto ${adjustImageSize ? "w-[71%]" : "w-[83%]"}`}
+                        />
                     </a>
                 </div>
                 <div className="custom-width ml-[-40px] h-[30px] border border-gray-400 rounded-b-full z-3 relative left-[4%]"></div>
@@ -21,11 +33,12 @@ const ProjectCard = ({ link, imgSrc, title, adjustImageSize }: ProjectCardProps)
             <div className="text-center z-3">
                 <h3 className="font-[500] md:text-[38px] sm:text-[24px]">{title}</h3>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
 export default ProjectCard;
+
 
 
 // interface ProjectCardProps {

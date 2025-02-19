@@ -6,6 +6,8 @@ import Loader from "./components/Loader.tsx";
 import BackgroundLines from "./components/BackgroundLines.tsx";
 import HeroSection from "./components/HeroSection.tsx";
 
+import { motion } from "framer-motion"; // Import Framer Motion
+
 function App() {
     const [loading, setLoading] = useState(true);
 
@@ -24,17 +26,30 @@ function App() {
                 <>
                     <BackgroundLines />
                     <Header />
-                    <div className="flex-grow">
+
+                    {/* Page Fade-In Animation */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 1.05 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1, ease: "easeOut" }}
+                        className="flex-grow"
+                    >
                         <HeroSection />
                         <section className="py-[100px]">
                             <div className="w-full mx-auto xxl:max-w-[1280px] xl:max-w-[1140px] lg:max-w-[1024px] md:max-w-[768px] sm:max-w-[640px] px-[3px]">
-                                <div className="w-full grid md:grid-cols-2 sm:grid-cols-1 items-center justify-center gap-10">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 50 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 1, delay: 0.5 }}
+                                    className="w-full grid md:grid-cols-2 sm:grid-cols-1 items-center justify-center gap-10"
+                                >
                                     <ProjectCard title="Frontend Work" imgSrc="img/demos/4.png" link="dark/home.html" adjustImageSize={false} />
                                     <ProjectCard title="Backend Work" imgSrc="img/demos/3.png" link="dark/coming-soon.html" adjustImageSize={true} />
-                                </div>
+                                </motion.div>
                             </div>
                         </section>
-                    </div>
+                    </motion.div>
+
                     <Footer />
                 </>
             )}
@@ -43,4 +58,5 @@ function App() {
 }
 
 export default App;
+
 
